@@ -1,16 +1,24 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import pandas
+
+data = pandas.read_csv("nato_phonetic_alphabet.csv") #read data
+print(data)
+#prints:
+#  letter      code
+# 0       A      Alfa
+# 1       B     Bravo
+# 2       C   Charlie
+# 3       D     Delta........... and so on. THIS IS A DATA FRAME
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+#TODO 1. Create a dictionary in this format: #To iterate through a DataFrame we use dataframe.iterrows() **
+phonetic_dict = {row.letter: row.code for (index, row) in data.iterrows()} #letter and code are 2 headings in csv file.
+# row is a fixed name which we tap into, to access anything rom the 2 headings
+print(phonetic_dict)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+
+word = input("Enter a word: ").upper()
+new_list = [phonetic_dict[letter] for letter in word]
+print(new_list)
